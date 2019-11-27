@@ -17,7 +17,7 @@ module.exports = function (app) {
   app.post('/api/vet/add', function (req, res) {
     let input = JSON.parse(JSON.stringify(req.body));
     req.getConnection(function (err, connection) {
-      let data = trainerInputHandler(input);
+      let data = vetInputHandler(input);
       console.log('save request...', data);
       connection.query("INSERT INTO Account set ? ", [data.account], function (err) {
         if (err) {
@@ -67,7 +67,7 @@ module.exports = function (app) {
   app.post('/api/vet/edit/:id', function (req, res) {
     let input = JSON.parse(JSON.stringify(req.body));
     req.getConnection(function (err, connection) {
-      let data = trainerInputHandler(input);
+      let data = vetInputHandler(input);
       console.log('save request...', data);
       connection.query("INSERT INTO Account set ? ", [data.account], function (err) {
         if (err) {
