@@ -1,0 +1,22 @@
+<h2>Add your shelter to Weasel Beagle</h2>
+
+<form [formGroup]="shelterAddForm" (ngSubmit)="onSubmit(shelterAddForm.value)">
+  <div class="grid-x">
+    <div class="cell medium-12">
+      <input class="login-box-input" type="text" placeholder="Shelter Name" formControlName="name"/>
+    </div>
+
+    <div class="cell medium-12">
+      <input class="login-box-input" type="text" placeholder="Address" formControlName="address"/>
+    </div>
+
+    <div class="cell medium-12">
+      <input class="login-box-input" type="text" placeholder="Primary Phone #" formControlName="primaryPhone"/>
+    </div>
+
+    <div class="cell medium-12">
+      <input class="login-box-input" type="text" placeholder="Secondary Phone #" formControlName="secondaryPhone"/>
+    </div>
+  </div>
+  <button class="button" type="submit">Register Shelter</button>
+</form>

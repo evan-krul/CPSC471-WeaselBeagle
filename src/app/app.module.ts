@@ -7,9 +7,13 @@ import { ProductAddComponent } from './product-add/product-add.component';
 import { ProductGetComponent } from './product-get/product-get.component';
 import { ProductEditComponent } from './product-edit/product-edit.component';
 import {SlimLoadingBarModule} from 'ng2-slim-loading-bar';
-import { LoginShelterEmpComponent } from './login-shelter-emp/login-shelter-emp.component';
+import { LoginComponent } from './login/login.component';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { RegisterComponent } from './register/register.component';
+import { NotifierModule } from 'angular-notifier';
+import { AddShelterComponent } from './add-shelter/add-shelter.component';
+
 
 @NgModule({
   declarations: [
@@ -17,7 +21,9 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     ProductAddComponent,
     ProductGetComponent,
     ProductEditComponent,
-    LoginShelterEmpComponent
+    LoginComponent,
+    RegisterComponent,
+    AddShelterComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +31,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     SlimLoadingBarModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    NotifierModule
   ],
   providers: [],
   bootstrap: [AppComponent]

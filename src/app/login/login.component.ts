@@ -3,25 +3,29 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AlertService, AuthenticationService} from '../services';
 import { first } from 'rxjs/operators';
+import {NotifierService} from 'angular-notifier';
 
 @Component({
   selector: 'app-login-shelter-emp',
-  templateUrl: './login-shelter-emp.component.html',
-  styleUrls: ['./login-shelter-emp.component.css']
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
 })
-export class LoginShelterEmpComponent implements OnInit {
+export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   loading = false;
   submitted = false;
   returnUrl: string;
+  notifier;
 
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
     private authenticationService: AuthenticationService,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private notifierService: NotifierService
   ) {
+    this.notifier = notifierService;
     // redirect to home if already logged in
     if (this.authenticationService.currentUserValue) {
       this.router.navigate(['/']);
@@ -59,10 +63,13 @@ export class LoginShelterEmpComponent implements OnInit {
       .subscribe(
         data => {
           // this.router.navigate([this.returnUrl]);
+          this.notifier.notify('success', 'Welcome to Weasel Beagle');
           window.location.replace(this.returnUrl);
         },
         error => {
-          this.alertService.error(error);
+          this.notifier.notify('error', error.error.message);
+
+          this.alertService.error(error.error.message);
           this.loading = false;
         });
   }

@@ -6,8 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./product-edit.component.css']
 })
 export class ProductEditComponent implements OnInit {
-
-  constructor() { }
+  account;
+  accountData;
+  constructor() {
+    this.account = JSON.parse(localStorage.getItem('currentUser'));
+    this.accountData = JSON.parse(localStorage.getItem('currentUserData'));
+  }
 
   ngOnInit() {
   }

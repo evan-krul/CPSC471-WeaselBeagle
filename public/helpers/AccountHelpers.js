@@ -8,6 +8,7 @@ module.exports = {
         address: input.address,
         email: input.email,
         password: input.password,
+        accountType: input.accountType
       }
     }
   },

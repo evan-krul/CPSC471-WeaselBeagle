@@ -24,13 +24,13 @@ export class AuthenticationService {
     }
 
   login(email, password) {
-    // TODO implement server login
-    return this.http.post<any>(`http://localhost:4300/api/users/shelter_emp/authenticate`, {email, password})
-      .pipe(map(user => {
+    return this.http.post<any>(`http://localhost:4300/api/login`, {email, password})
+      .pipe(map(userObject => {
         // store user details and jwt token in local storage to keep user logged in between page refreshes
-        localStorage.setItem('currentUser', JSON.stringify(user));
-        this.currentUserSubject.next(user);
-        return user;
+        localStorage.setItem('currentUser', JSON.stringify(userObject.account));
+        localStorage.setItem('currentUserData', JSON.stringify(userObject.accountData));
+        this.currentUserSubject.next(userObject);
+        return userObject;
       }));
     }
 

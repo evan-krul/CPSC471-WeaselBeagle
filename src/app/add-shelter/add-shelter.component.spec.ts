@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LoginShelterEmpComponent } from './login-shelter-emp.component';
+import { AddShelterComponent } from './add-shelter.component';
 
-describe('LoginShelterEmpComponent', () => {
-  let component: LoginShelterEmpComponent;
-  let fixture: ComponentFixture<LoginShelterEmpComponent>;
+describe('AddShelterComponent', () => {
+  let component: AddShelterComponent;
+  let fixture: ComponentFixture<AddShelterComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LoginShelterEmpComponent ]
+      declarations: [ AddShelterComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LoginShelterEmpComponent);
+    fixture = TestBed.createComponent(AddShelterComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

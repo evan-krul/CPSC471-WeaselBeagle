@@ -1,2 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 @import "../node_modules/ng2-slim-loading-bar/style.css";
+
+.invalid-feedback {
+  color: red;
+  padding: 0;
+  margin: -14px 0 0;
+}

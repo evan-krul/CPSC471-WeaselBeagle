@@ -1,0 +1,53 @@
+<h2>Register for an account!</h2>
+
+<div class="callout warning" *ngIf="isShelterReg">
+  <h5>This is your unique shelter portal!</h5>
+  <p>Please save this url to register new employees to your shelter.</p>
+  <div class="grid-x">
+    <div class="cell medium-12">
+      <input type="text" readonly value="{{href}}" formControlName="email"/>
+    </div>
+  </div>
+</div>
+
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit(registerForm.value)">
+  <div class="grid-x">
+    <div class="cell medium-12">
+      <input required class="login-box-input" type="email" placeholder="E-mail" formControlName="email"/>
+    </div>
+
+    <div class="cell medium-6">
+      <input class="login-box-input" type="text" placeholder="First Name" formControlName="fname"/>
+    </div>
+
+    <div class="cell medium-6">
+      <input class="login-box-input" type="text" placeholder="Last Name" formControlName="lname"/>
+    </div>
+
+    <div class="cell medium-12">
+      <input class="login-box-input" type="text" placeholder="Address" formControlName="address"/>
+    </div>
+
+    <div class="cell medium-12">
+      <input class="login-box-input" type="password" placeholder="Password" formControlName="password"/>
+    </div>
+
+    <div class="cell medium-12">
+      <input class="login-box-input" type="text" placeholder="Primary Phone #" formControlName="primaryPhone"/>
+    </div>
+
+    <div class="cell medium-12">
+      <input class="login-box-input" type="text" placeholder="Secondary Phone #" formControlName="secondaryPhone"/>
+    </div>
+    <div class="cell medium-12">
+      <label *ngIf="!isShelterReg">Account Type
+        <select formControlName="accountType">
+          <option value="adopter">I want to adopt!</option>
+          <option value="vet">I am a Vet!</option>
+          <option value="trainer">I am Trainer!</option>
+        </select>
+      </label>
+    </div>
+  </div>
+  <button class="button" type="submit">Register</button>
+</form>
