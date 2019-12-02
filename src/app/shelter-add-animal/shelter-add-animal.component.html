@@ -1,0 +1,49 @@
+<h2>Add an animal!</h2>
+
+<form [formGroup]="animalForm" (ngSubmit)="onSubmit(animalForm.value)">
+  <div class="grid-x">
+    <div class="cell medium-12">
+      <label for="chipID">Chip ID</label>
+      <input type="number" placeholder="Chip ID" name="chipID" formControlName="chipID"/>
+    </div>
+
+    <div class="cell medium-12">
+      <label for="name">Name</label>
+      <input type="email" placeholder="Name" name="name" formControlName="name"/>
+    </div>
+    <div class="cell medium-12`">
+      <label>Type
+        <select formControlName="animalType">
+          <option value="dog">Dog</option>
+          <option value="cat">Cat</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+    </div>
+    <div class="cell medium-12">
+      <label>Breed
+        <select formControlName="breed">
+          <option *ngFor="let breed of breeds; let i = index" [value]="breed.value">
+            {{breed.text}}
+          </option>
+        </select>
+      </label>
+    </div>
+    <div class="cell medium-12">
+      <label for="birthDate">Birthday</label>
+      <input type="date" name="birthDate" formControlName="birthDate">
+    </div>
+    <div class="cell medium-12">
+      <label for="traits">Traits</label>
+      <tag-input
+        name="traits"
+        formControlName="traits"
+        [modelAsStrings]="true">
+      </tag-input>
+    </div>
+
+
+  </div>
+  <br>
+  <button class="button" type="submit">Add Animal</button>
+</form>

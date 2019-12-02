@@ -13,6 +13,13 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { RegisterComponent } from './register/register.component';
 import { NotifierModule } from 'angular-notifier';
 import { AddShelterComponent } from './add-shelter/add-shelter.component';
+import { TrainerScheduleComponent } from './trainer-schedule/trainer-schedule.component';
+import {FullCalendarModule} from '@fullcalendar/angular';
+import { ShelterAddAnimalComponent } from './shelter-add-animal/shelter-add-animal.component';
+import {TagInputModule} from 'ngx-chips';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { ShelterViewAnimalsComponent } from './shelter-view-animals/shelter-view-animals.component';
+import { ShelterViewAnimalComponent } from './shelter-view-animal/shelter-view-animal.component';
 
 
 @NgModule({
@@ -23,7 +30,11 @@ import { AddShelterComponent } from './add-shelter/add-shelter.component';
     ProductEditComponent,
     LoginComponent,
     RegisterComponent,
-    AddShelterComponent
+    AddShelterComponent,
+    TrainerScheduleComponent,
+    ShelterAddAnimalComponent,
+    ShelterViewAnimalsComponent,
+    ShelterViewAnimalComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +43,10 @@ import { AddShelterComponent } from './add-shelter/add-shelter.component';
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-    NotifierModule
+    NotifierModule,
+    FullCalendarModule,
+    TagInputModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

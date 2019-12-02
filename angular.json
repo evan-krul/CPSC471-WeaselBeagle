@@ -26,7 +26,9 @@
             "styles": [
               "src/styles.css",
               "./node_modules/foundation-sites/dist/css/foundation.min.css",
-              "./node_modules/angular-notifier/styles.css"
+              "./node_modules/angular-notifier/styles.css",
+              "./node_modules/@fullcalendar/core/main.css",
+              "./node_modules/@fullcalendar/daygrid/main.css"
             ],
             "scripts": []
           },
