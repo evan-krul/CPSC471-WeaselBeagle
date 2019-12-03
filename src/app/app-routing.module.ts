@@ -13,6 +13,9 @@ import {ShelterViewAnimalsComponent} from './shelter-view-animals/shelter-view-a
 import {ShelterViewAnimalComponent} from './shelter-view-animal/shelter-view-animal.component';
 import {TrainerGuard} from './helpers/trainer.guard';
 import {ShelterGuard} from './helpers/shelter.guard';
+import {RegisterComponent} from './register/register.component';
+import {HomeComponent} from './home/home.component';
+import {ListpetsComponent} from './listpets/listpets.component';
 
 
 /**
@@ -28,6 +31,12 @@ const routes: Routes = [
   { path: 'shelter/animals/add', component: ShelterAddAnimalComponent, canActivate: [ShelterGuard]},
   { path: 'shelter/animals', component: ShelterViewAnimalsComponent, canActivate: [ShelterGuard]},
   { path: 'shelter/animals/view/:animal_id', component: ShelterViewAnimalComponent, canActivate: [ShelterGuard]},
+  { path: '', component: HomeComponent, canActivate: [AuthGuard] },
+  { path: 'add_prod', component: ProductAddComponent, canActivate: [AuthGuard] },
+  { path: 'register', component: RegisterComponent },
+  { path: 'listPets/:type', component: ListpetsComponent}
+
+  // otherwise redirect to home
 ];
 
 @NgModule({

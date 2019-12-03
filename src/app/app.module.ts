@@ -20,7 +20,9 @@ import {TagInputModule} from 'ngx-chips';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { ShelterViewAnimalsComponent } from './shelter-view-animals/shelter-view-animals.component';
 import { ShelterViewAnimalComponent } from './shelter-view-animal/shelter-view-animal.component';
-
+import { RegisterComponent } from './register/register.component';
+import { HomeComponent } from './home/home.component';
+import { ListpetsComponent } from './listpets/listpets.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,10 @@ import { ShelterViewAnimalComponent } from './shelter-view-animal/shelter-view-a
     TrainerScheduleComponent,
     ShelterAddAnimalComponent,
     ShelterViewAnimalsComponent,
-    ShelterViewAnimalComponent
+    ShelterViewAnimalComponent,
+    RegisterComponent,
+    HomeComponent,
+    ListpetsComponent
   ],
   imports: [
     BrowserModule,
