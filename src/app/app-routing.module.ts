@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {ProductAddComponent} from './product-add/product-add.component';
 import {ProductEditComponent} from './product-edit/product-edit.component';
-import {ProductGetComponent} from './product-get/product-get.component';
+//import {ProductGetComponent} from './product-get/product-get.component';
 import {LoginComponent} from './login/login.component';
 import {AuthGuard} from './helpers/auth.guard';
 import {RegisterComponent} from './register/register.component';
@@ -13,16 +13,17 @@ import {ShelterViewAnimalsComponent} from './shelter-view-animals/shelter-view-a
 import {ShelterViewAnimalComponent} from './shelter-view-animal/shelter-view-animal.component';
 import {TrainerGuard} from './helpers/trainer.guard';
 import {ShelterGuard} from './helpers/shelter.guard';
-import {RegisterComponent} from './register/register.component';
 import {HomeComponent} from './home/home.component';
-import {ListpetsComponent} from './listpets/listpets.component';
+import {AdopterViewAnimalsComponent} from './adopter-view-animals/adopter-view-animals.component';
+import {AdopterGuard} from './helpers/adopter.guard';
+import {AdopterViewAnimalComponent} from './adopter-view-animal/adopter-view-animal.component';
 
 
 /**
  * LOGIN CODE ADAPTED FROM: https://jasonwatmore.com/post/2019/06/10/angular-8-user-registration-and-login-example-tutorial
  */
 const routes: Routes = [
-  { path: '', component: ProductEditComponent, canActivate: [AuthGuard] },
+  { path: '', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'register/shelter', component: AddShelterComponent },
@@ -31,10 +32,9 @@ const routes: Routes = [
   { path: 'shelter/animals/add', component: ShelterAddAnimalComponent, canActivate: [ShelterGuard]},
   { path: 'shelter/animals', component: ShelterViewAnimalsComponent, canActivate: [ShelterGuard]},
   { path: 'shelter/animals/view/:animal_id', component: ShelterViewAnimalComponent, canActivate: [ShelterGuard]},
-  { path: '', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'add_prod', component: ProductAddComponent, canActivate: [AuthGuard] },
-  { path: 'register', component: RegisterComponent },
-  { path: 'listPets/:type', component: ListpetsComponent}
+  { path: 'adopter/:type', component: AdopterViewAnimalsComponent, canActivate: [AdopterGuard]},
+  { path: 'adopter/view/:animal_id', component: AdopterViewAnimalComponent, canActivate: [AdopterGuard]}
 
   // otherwise redirect to home
 ];

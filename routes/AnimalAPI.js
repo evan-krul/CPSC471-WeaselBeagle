@@ -54,7 +54,56 @@ module.exports = function (app) {
     }
   });
 
+  app.get('/api/animal/all/:type', function (req, res) {
+    req.getConnection(function (err, connection) {
+      const query = connection.query('SELECT * FROM Animal JOIN WaitingPlacement ON WaitingPlacement.chipID=Animal.chipID WHERE Animal.animalType=? ORDER BY WaitingPlacement.surrenderTimestamp DESC', [req.params.type], function (err, rows) {
+        if (err) {
+          console.log("Error Selecting : %s ", err);
+          res.setHeader('Content-Type', 'application/json');
+          let result = {
+            message: "Unknown error."
+          };
+          res.status(401).send(JSON.stringify(result));
+        } else {
+          animalsData = rows;
+          rows.forEach(function (row, index) {
+            let apiURL;
+            switch (row.animalType) {
+              case 'dog':
+                apiURL = 'https://api.TheDogAPI.com/v1/images/search?breed_ids=';
+                break;
+              case 'cat':
+                apiURL = 'https://api.thecatapi.com/v1/images/search?breed_ids=';
+                break;
+              default:
+                apiURL = '';
+            }
+            promises.push(apiBreed(apiURL + row.breed, index));
+          });
 
+
+          Promise.all(promises).then(() => {
+            res.setHeader('Content-Type', 'application/json');
+            res.send(JSON.stringify(animalsData));
+          }).catch(err => {
+            console.log('Promise err: %s', err);
+            res.setHeader('Content-Type', 'application/json');
+            let result = {
+              message: "Unknown error."
+            };
+            res.status(401).send(JSON.stringify(result));
+          });
+        }
+      });
+    });
+
+    function apiBreed(urlApi, index) {
+      return request({url: urlApi, json: true}).then(function (obj) {
+        console.log(obj);
+        animalsData[index].apiData = obj[0];
+      });
+    }
+  });
 
   app.post('/api/animal/add', function (req, res) {
     let data = JSON.parse(JSON.stringify(req.body));

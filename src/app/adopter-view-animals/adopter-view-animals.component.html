@@ -1,0 +1,25 @@
+<h1>Find a {{type}}</h1>
+<h3>Animals waiting for homes!</h3>
+<div class="grid-x full">
+  <div class="cell small-12">
+    <!--    <p>Search</p>-->
+  </div>
+  <div class="cell  small-12">
+    <div class="grid-x grid-margin-x small-up-1 medium-up-2 large-up-3">
+
+      <div routerLink="/adopter/view/{{animal.chipID}}" *ngFor="let animal of animals" class="cell">
+        <div class="card">
+          <div class="animal-thumbnail" class="card-divider">
+            <h3>
+              {{animal.name}}
+            </h3>
+          </div>
+          <img class="animal-thumbnail" src="{{animal.apiData.url}}">
+          <div class="card-section">
+            <p>{{animal.apiData.breeds[0].name}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

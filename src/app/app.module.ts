@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ProductAddComponent } from './product-add/product-add.component';
-import { ProductGetComponent } from './product-get/product-get.component';
+//import { ProductGetComponent } from './product-get/product-get.component';
 import { ProductEditComponent } from './product-edit/product-edit.component';
 import {SlimLoadingBarModule} from 'ng2-slim-loading-bar';
 import { LoginComponent } from './login/login.component';
@@ -20,15 +20,15 @@ import {TagInputModule} from 'ngx-chips';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { ShelterViewAnimalsComponent } from './shelter-view-animals/shelter-view-animals.component';
 import { ShelterViewAnimalComponent } from './shelter-view-animal/shelter-view-animal.component';
-import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
-import { ListpetsComponent } from './listpets/listpets.component';
+import { AdopterViewAnimalsComponent } from './adopter-view-animals/adopter-view-animals.component';
+import { AdopterViewAnimalComponent } from './adopter-view-animal/adopter-view-animal.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProductAddComponent,
-    ProductGetComponent,
+   // ProductGetComponent,
     ProductEditComponent,
     LoginComponent,
     RegisterComponent,
@@ -39,7 +39,8 @@ import { ListpetsComponent } from './listpets/listpets.component';
     ShelterViewAnimalComponent,
     RegisterComponent,
     HomeComponent,
-    ListpetsComponent
+    AdopterViewAnimalsComponent,
+    AdopterViewAnimalComponent
   ],
   imports: [
     BrowserModule,
