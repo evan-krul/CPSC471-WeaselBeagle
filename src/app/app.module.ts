@@ -22,6 +22,7 @@ import { ShelterViewAnimalComponent } from './shelter-view-animal/shelter-view-a
 import { HomeComponent } from './home/home.component';
 import { AdopterViewAnimalsComponent } from './adopter-view-animals/adopter-view-animals.component';
 import { AdopterViewAnimalComponent } from './adopter-view-animal/adopter-view-animal.component';
+import { AdoptionApplicationComponent } from './adoption-application/adoption-application.component';
 import { ShelterEditAnimalComponent } from './shelter-edit-animal/shelter-edit-animal.component';
 
 
@@ -41,6 +42,8 @@ import { ShelterEditAnimalComponent } from './shelter-edit-animal/shelter-edit-a
     RegisterComponent,
     HomeComponent,
     AdopterViewAnimalsComponent,
+    AdopterViewAnimalComponent,
+    AdoptionApplicationComponent,
     AdopterViewAnimalComponent,
     ShelterViewAnimalComponent,
     ShelterEditAnimalComponent

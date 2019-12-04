@@ -1,10 +1,36 @@
 <h1>Find a {{type}}</h1>
 <h3>Animals waiting for homes!</h3>
 <div class="grid-x full">
-  <div class="cell small-12">
-    <!--    <p>Search</p>-->
+  <div class="cell small-4">
+  <form [formGroup]="filterForm" (ngSubmit)="onSubmit(filterForm.value)">
+    <label>Select Breed
+      <select formControlName="breed">
+        <option *ngFor="let breed of breeds; let i = index" [value]="breed.value">
+          {{breed.text}}
+        </option>
+      </select>
+    </label>
+
+    <label>Select Age
+      <select formControlName="animalAge">
+        <option value="husker">Any</option>
+        <option value="young">Young</option>
+        <option value="adult">Adult</option>
+        <option value="senior">Senior</option>
+      </select>
+    </label>
+
+    <label for="traits">Traits</label>
+    <tag-input
+      name="traits"
+      formControlName="traits"
+      [modelAsStrings]="true">
+    </tag-input>
+
+    <button type="submit" class="expanded button">Add Filters</button>
+  </form>
   </div>
-  <div class="cell  small-12">
+  <div class="cell  small-8">
     <div class="grid-x grid-margin-x small-up-1 medium-up-2 large-up-3">
 
       <div routerLink="/adopter/view/{{animal.chipID}}" *ngFor="let animal of animals" class="cell">

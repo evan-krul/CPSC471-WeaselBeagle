@@ -17,6 +17,7 @@ import {AdopterViewAnimalsComponent} from './adopter-view-animals/adopter-view-a
 import {AdopterGuard} from './helpers/adopter.guard';
 import {AdopterViewAnimalComponent} from './adopter-view-animal/adopter-view-animal.component';
 import {ShelterEditAnimalComponent} from './shelter-edit-animal/shelter-edit-animal.component';
+import {AdoptionApplicationComponent} from './adoption-application/adoption-application.component';
 
 
 /**
@@ -36,6 +37,10 @@ const routes: Routes = [
   { path: 'adopter/:type', component: AdopterViewAnimalsComponent, canActivate: [AdopterGuard]},
   { path: 'adopter/view/:animal_id', component: AdopterViewAnimalComponent, canActivate: [AdopterGuard]},
   { path: 'shelter/animals/edit/:animal_id', component: ShelterEditAnimalComponent, canActivate: [ShelterGuard]},
+  { path: 'adopter/view/:animal_id', component: AdopterViewAnimalComponent, canActivate: [AdopterGuard]},
+  { path: 'application', component: AdoptionApplicationComponent, canActivate: [AdopterGuard]}
+
+  // otherwise redirect to home
 ];
 
 @NgModule({
