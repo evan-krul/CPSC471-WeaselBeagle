@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {ProductAddComponent} from './product-add/product-add.component';
 import {ProductEditComponent} from './product-edit/product-edit.component';
-//import {ProductGetComponent} from './product-get/product-get.component';
 import {LoginComponent} from './login/login.component';
 import {AuthGuard} from './helpers/auth.guard';
 import {RegisterComponent} from './register/register.component';
@@ -17,6 +16,7 @@ import {HomeComponent} from './home/home.component';
 import {AdopterViewAnimalsComponent} from './adopter-view-animals/adopter-view-animals.component';
 import {AdopterGuard} from './helpers/adopter.guard';
 import {AdopterViewAnimalComponent} from './adopter-view-animal/adopter-view-animal.component';
+import {ShelterEditAnimalComponent} from './shelter-edit-animal/shelter-edit-animal.component';
 
 
 /**
@@ -34,9 +34,7 @@ const routes: Routes = [
   { path: 'shelter/animals/view/:animal_id', component: ShelterViewAnimalComponent, canActivate: [ShelterGuard]},
   { path: 'add_prod', component: ProductAddComponent, canActivate: [AuthGuard] },
   { path: 'adopter/:type', component: AdopterViewAnimalsComponent, canActivate: [AdopterGuard]},
-  { path: 'adopter/view/:animal_id', component: AdopterViewAnimalComponent, canActivate: [AdopterGuard]}
-
-  // otherwise redirect to home
+  { path: 'adopter/view/:animal_id', component: AdopterViewAnimalComponent, canActivate: [AdopterGuard]},
   { path: 'shelter/animals/edit/:animal_id', component: ShelterEditAnimalComponent, canActivate: [ShelterGuard]},
 ];
 
