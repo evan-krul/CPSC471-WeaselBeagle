@@ -13,21 +13,14 @@
 
     <label>Select Age
       <select formControlName="animalAge">
-        <option value="husker">Any</option>
         <option value="young">Young</option>
         <option value="adult">Adult</option>
         <option value="senior">Senior</option>
       </select>
     </label>
 
-    <label for="traits">Traits</label>
-    <tag-input
-      name="traits"
-      formControlName="traits"
-      [modelAsStrings]="true">
-    </tag-input>
-
     <button type="submit" class="expanded button">Add Filters</button>
+    <button (click)="clearForm()" type="button" class="expanded button">Clear Filters</button>
   </form>
   </div>
   <div class="cell  small-8">

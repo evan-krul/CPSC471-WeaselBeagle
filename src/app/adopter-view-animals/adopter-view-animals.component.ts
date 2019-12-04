@@ -11,7 +11,7 @@ import {NotifierService} from 'angular-notifier';
 })
 export class AdopterViewAnimalsComponent implements OnInit {
 
-  SERVER_URL = 'http://localhost:4300/api/animal/all/';
+  SERVER_URL = 'http://localhost:4300/api/animal/all';
 
   private animals;
   private account;
@@ -19,27 +19,35 @@ export class AdopterViewAnimalsComponent implements OnInit {
   private type;
   public filterForm;
   private breeds;
+  private temp;
+  notifier;
   constructor(private route: ActivatedRoute, private httpClient: HttpClient,
               private formBuilder: FormBuilder,
-              private router: Router) {
+              private router: Router, private notifierService: NotifierService) {
     this.type = this.route.snapshot.paramMap.get('type');
     this.account = JSON.parse(localStorage.getItem('currentUser'));
     this.accountData = JSON.parse(localStorage.getItem('currentUserData'));
+    this.notifier = notifierService;
 
     this.filterForm = this.formBuilder.group({
       breed: '',
       animalAge: null,
-      traits: []
     });
   }
 
   ngOnInit() {
     this.getAnimals();
-   // this.getAsyncBreeds(this.type);
     this.onChanges();
   }
   getAnimals() {
-    this.httpClient.get<any>(this.SERVER_URL + this.type, {}).subscribe(
+    console.log(this.type);
+    this.httpClient.get<any>(this.SERVER_URL, {
+      params: {
+        type: this.type,
+        breed: this.filterForm.value.breed,
+        animalAge: this.filterForm.value.animalAge,
+      }
+    }).subscribe(
       (res) => {
         this.animals = [];
         this.animals = this.animals.concat(
@@ -54,16 +62,8 @@ export class AdopterViewAnimalsComponent implements OnInit {
   }
 
   onSubmit(newAnimalData) {
+    this.getAnimals();
     console.log(newAnimalData);
-
-    this.httpClient.post<any>(this.SERVER_URL, newAnimalData).subscribe(
-      (res) => {
-        this.router.navigateByUrl('adopter/' + this.type);
-      },
-      (err) => {
-        console.log(err);
-      }
-    );
   }
 
   onChanges(): void {
@@ -98,5 +98,10 @@ export class AdopterViewAnimalsComponent implements OnInit {
         console.log(err);
       }
     );
+  }
+
+  clearForm() {
+    this.filterForm.reset();
+    this.getAnimals();
   }
 }

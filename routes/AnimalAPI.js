@@ -54,9 +54,13 @@ module.exports = function (app) {
     }
   });
 
-  app.get('/api/animal/all/:type', function (req, res) {
+  app.get('/api/animal/all', function (req, res) {
     req.getConnection(function (err, connection) {
-      const query = connection.query('SELECT * FROM Animal JOIN WaitingPlacement ON WaitingPlacement.chipID=Animal.chipID WHERE Animal.animalType=? ORDER BY WaitingPlacement.surrenderTimestamp DESC', [req.params.type], function (err, rows) {
+      var today = new Date();
+      console.log(today);
+      const query = connection.query('SELECT * FROM Animal JOIN WaitingPlacement ON WaitingPlacement.chipID=Animal.chipID WHERE Animal.animalType=? AND (Animal.breed=? OR ?="" OR ?="null") AND ((?="young" AND 2>(SELECT DATEDIFF(?, Animal.birthDate)/365)) OR (?="adult" AND 8>(SELECT DATEDIFF(?, Animal.birthDate)/365) AND 2<=(SELECT DATEDIFF(?, Animal.birthDate)/365)) OR (?="senior" AND 8<=(SELECT DATEDIFF(?, Animal.birthDate)/365)) OR ?="null") ORDER BY WaitingPlacement.surrenderTimestamp DESC', [req.query.type, req.query.breed, req.query.breed, req.query.breed, req.query.animalAge, today, req.query.animalAge, today, today, req.query.animalAge, today, req.query.animalAge, req.query.animalAge], function (err, rows) {
+        console.log(req.query);
+        console.log(query.sql);
         if (err) {
           console.log("Error Selecting : %s ", err);
           res.setHeader('Content-Type', 'application/json');
