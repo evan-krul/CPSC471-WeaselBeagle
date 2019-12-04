@@ -37,6 +37,7 @@ const routes: Routes = [
   { path: 'adopter/view/:animal_id', component: AdopterViewAnimalComponent, canActivate: [AdopterGuard]}
 
   // otherwise redirect to home
+  { path: 'shelter/animals/edit/:animal_id', component: ShelterEditAnimalComponent, canActivate: [ShelterGuard]},
 ];
 
 @NgModule({
