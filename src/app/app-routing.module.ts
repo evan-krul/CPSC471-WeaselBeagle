@@ -13,6 +13,7 @@ import {ShelterViewAnimalsComponent} from './shelter-view-animals/shelter-view-a
 import {ShelterViewAnimalComponent} from './shelter-view-animal/shelter-view-animal.component';
 import {TrainerGuard} from './helpers/trainer.guard';
 import {ShelterGuard} from './helpers/shelter.guard';
+import {ShelterEditAnimalComponent} from './shelter-edit-animal/shelter-edit-animal.component';
 
 
 /**
@@ -28,6 +29,7 @@ const routes: Routes = [
   { path: 'shelter/animals/add', component: ShelterAddAnimalComponent, canActivate: [ShelterGuard]},
   { path: 'shelter/animals', component: ShelterViewAnimalsComponent, canActivate: [ShelterGuard]},
   { path: 'shelter/animals/view/:animal_id', component: ShelterViewAnimalComponent, canActivate: [ShelterGuard]},
+  { path: 'shelter/animals/edit/:animal_id', component: ShelterEditAnimalComponent, canActivate: [ShelterGuard]},
 ];
 
 @NgModule({
