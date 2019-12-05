@@ -29,7 +29,7 @@ module.exports = function (app) {
           console.log("Error inserting : %s ", err);
         }
       });
-      connection.query("INSERT INTO UserAccountPhoneNumbers set ? ", [data.userAccountPhoneNumbers], function (err) {
+      connection.query("INSERT INTO UserAccountPhoneNumbers set ?", [data.userAccountPhoneNumbers], function (err) {
         if (err) {
           console.log("Error inserting : %s ", err);
         }

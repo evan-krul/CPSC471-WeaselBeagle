@@ -3,48 +3,67 @@ let promises = [];
 let animalsData;
 
 module.exports = function (app) {
+
+  app.get('/api/animal/get/adopter/:animal_id', function (req, res) {
+    req.getConnection(function (err, connection) {
+      const query = connection.query('SELECT * FROM Account JOIN Adopter ON Account.email = Adopter.email JOIN AdoptionApplication ON AdoptionApplication.adopterEmail=Adopter.email WHERE AdoptionApplication.chipID = ? AND AdoptionApplication.adoptionStatus = ?', [req.params.animal_id, 'approved'], function (err, rows) {
+        console.log(query.sql);
+        if (err) {
+          console.log("Error Selecting : %s ", err);
+          res.setHeader('Content-Type', 'application/json');
+          let result = {
+            message: "Unknown error."
+          };
+          res.status(401).send(JSON.stringify(result));
+        } else {
+          res.setHeader('Content-Type', 'application/json');
+          res.status(200).send(JSON.stringify(rows[0]));
+        }
+      });
+    });
+  });
+
   app.get('/api/animal/get/shelter/:id', function (req, res) {
     req.getConnection(function (err, connection) {
-        const query = connection.query('SELECT * FROM Animal JOIN WaitingPlacement ON WaitingPlacement.chipID=Animal.chipID WHERE shelterid=? ORDER BY WaitingPlacement.surrenderTimestamp DESC', [req.params.id], function (err, rows) {
-          if (err) {
-            console.log("Error Selecting : %s ", err);
+      const query = connection.query('SELECT * FROM Animal JOIN WaitingPlacement ON WaitingPlacement.chipID=Animal.chipID WHERE shelterid=? ORDER BY WaitingPlacement.surrenderTimestamp DESC', [req.params.id], function (err, rows) {
+        if (err) {
+          console.log("Error Selecting : %s ", err);
+          res.setHeader('Content-Type', 'application/json');
+          let result = {
+            message: "Unknown error."
+          };
+          res.status(401).send(JSON.stringify(result));
+        } else {
+          animalsData = rows;
+          rows.forEach(function (row, index) {
+            let apiURL;
+            switch (row.animalType) {
+              case 'dog':
+                apiURL = 'https://api.TheDogAPI.com/v1/images/search?breed_ids=';
+                break;
+              case 'cat':
+                apiURL = 'https://api.thecatapi.com/v1/images/search?breed_ids=';
+                break;
+              default:
+                apiURL = '';
+            }
+            promises.push(apiBreed(apiURL + row.breed, index));
+          });
+
+          Promise.all(promises).then(() => {
+            res.setHeader('Content-Type', 'application/json');
+            res.send(JSON.stringify(animalsData));
+          }).catch(err => {
+            console.log('Promise err: %s', err);
             res.setHeader('Content-Type', 'application/json');
             let result = {
               message: "Unknown error."
             };
             res.status(401).send(JSON.stringify(result));
-          } else {
-            animalsData = rows;
-            rows.forEach(function (row, index) {
-              let apiURL;
-              switch (row.animalType) {
-                case 'dog':
-                  apiURL = 'https://api.TheDogAPI.com/v1/images/search?breed_ids=';
-                  break;
-                case 'cat':
-                  apiURL = 'https://api.thecatapi.com/v1/images/search?breed_ids=';
-                  break;
-                default:
-                  apiURL = '';
-              }
-              promises.push(apiBreed(apiURL + row.breed, index));
-            });
-
-
-            Promise.all(promises).then(() => {
-              res.setHeader('Content-Type', 'application/json');
-              res.send(JSON.stringify(animalsData));
-            }).catch(err => {
-              console.log('Promise err: %s', err);
-              res.setHeader('Content-Type', 'application/json');
-              let result = {
-                message: "Unknown error."
-              };
-              res.status(401).send(JSON.stringify(result));
-            });
-          }
-        });
+          });
+        }
       });
+    });
 
     function apiBreed(urlApi, index) {
       return request({url: urlApi, json: true}).then(function (obj) {
@@ -53,8 +72,6 @@ module.exports = function (app) {
       });
     }
   });
-
-
 
   app.post('/api/animal/add', function (req, res) {
     let data = JSON.parse(JSON.stringify(req.body));
@@ -146,7 +163,7 @@ module.exports = function (app) {
             default:
               apiURL = '';
           }
-          request({url: apiURL+rows[0].breed, json: true}).then(function (obj) {
+          request({url: apiURL + rows[0].breed, json: true}).then(function (obj) {
             rows[0].apiData = obj[0];
             res.setHeader('Content-Type', 'application/json');
             res.send(JSON.stringify(rows[0]));
@@ -156,11 +173,12 @@ module.exports = function (app) {
     });
   });
 
+
   app.get('/api/animal/get_traits/:id', function (req, res) {
     req.getConnection(function (err, connection) {
       const query = connection.query('SELECT * FROM AnimalTraits WHERE chipID=? ', [req.params.id], function (err, rows) {
         if (err) {
-          console.log('Get err: %s', err);
+          console.log('Get err: %VetViewAnimalComponents', err);
           res.setHeader('Content-Type', 'application/json');
           let result = {
             message: "Unknown error."
@@ -174,3 +192,4 @@ module.exports = function (app) {
     });
   });
 };
+

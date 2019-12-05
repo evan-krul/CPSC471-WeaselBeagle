@@ -1,0 +1,12 @@
+img.animal-thumbnail {
+  display: inline-block;
+  clip-path: circle(66% at 42% 42%);
+}
+
+.card:hover {
+  box-shadow: 0px 0px 8px 0px #848484d9 !important;
+}
+
+.card {
+  box-shadow: 0px 0px 8px 0px #84848447 !important;
+}

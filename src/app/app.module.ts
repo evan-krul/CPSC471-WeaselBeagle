@@ -20,6 +20,9 @@ import {TagInputModule} from 'ngx-chips';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { ShelterViewAnimalsComponent } from './shelter-view-animals/shelter-view-animals.component';
 import { ShelterViewAnimalComponent } from './shelter-view-animal/shelter-view-animal.component';
+import { VetAddHealthRecordComponent } from './vet-add-health-record/vet-add-health-record.component';
+import { VetViewAnimalsComponent } from './vet-view-animals/vet-view-animals.component';
+import { VetViewAnimalComponent } from './vet-view-animal/vet-view-animal.component';
 
 
 @NgModule({
@@ -34,7 +37,10 @@ import { ShelterViewAnimalComponent } from './shelter-view-animal/shelter-view-a
     TrainerScheduleComponent,
     ShelterAddAnimalComponent,
     ShelterViewAnimalsComponent,
-    ShelterViewAnimalComponent
+    ShelterViewAnimalComponent,
+    VetAddHealthRecordComponent,
+    VetViewAnimalsComponent,
+    VetViewAnimalComponent
   ],
   imports: [
     BrowserModule,
