@@ -41,5 +41,41 @@
       <span *ngFor="let animalTrait of animalTraits" class="badge_traits">
           {{animalTrait.trait}}
       </span>
-    </div>
+  </div>
+  <div class="cell small-12">
+    <h3>Adoption Applications</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>
+            Application Date
+          </th>
+          <th>
+            Contact Email
+          </th>
+          <th>
+
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let adoptionApplication of animalAdoptionApplications">
+          <td>
+            {{adoptionApplication.submissionTimestamp.split('T')[0]}}
+          </td>
+          <td>
+            {{adoptionApplication.adopterEmail}}
+          </td>
+          <td>
+            <a (click)="approveApplication(adoptionApplication.adopterEmail)" class="button success">Approve</a>
+          </td>
+        </tr>
+        <tr *ngIf="animalAdoptionApplications.length === 0">
+          <td colspan="3">
+            <i>No adoption applications. </i>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>

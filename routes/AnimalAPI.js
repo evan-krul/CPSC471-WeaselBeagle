@@ -52,6 +52,7 @@ module.exports = function (app) {
           });
 
           Promise.all(promises).then(() => {
+            console.log(animalsData);
             res.setHeader('Content-Type', 'application/json');
             res.send(JSON.stringify(animalsData));
           }).catch(err => {
@@ -68,7 +69,6 @@ module.exports = function (app) {
 
     function apiBreed(urlApi, index) {
       return request({url: urlApi, json: true}).then(function (obj) {
-        console.log(obj);
         animalsData[index].apiData = obj[0];
       });
     }

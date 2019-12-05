@@ -39,6 +39,40 @@ module.exports = function (app) {
 
   });
 
+  app.post('/api/application/approve', function (req, res) {
+    let input = JSON.parse(JSON.stringify(req.body));
+    req.getConnection(function (err, connection) {
+      let query=connection.query("UPDATE AdoptionApplication set adoptionStatus=?, adoptionTimestamp=? WHERE chipID = ? AND adopterEmail = ?", ['approved', new Date() ,input.chipID, input.adopterEmail], function (err) {
+        console.log(query.sql);
+        if (err) {
+          console.log("Error updating : %s ", err);
+          res.setHeader('Content-Type', 'application/json');
+          let result = {
+            message: "Unknown error."
+          };
+          res.status(401).send(JSON.stringify(result));
+        } else {
+          connection.query("DELETE FROM WaitingPlacement WHERE chipID = ?", [input.chipID], function (err) {
+            console.log(query.sql);
+            if (err) {
+              console.log("Error updating : %s ", err);
+              res.setHeader('Content-Type', 'application/json');
+              let result = {
+                message: "Unknown error."
+              };
+              res.status(401).send(JSON.stringify(result));
+            } else {
+              res.setHeader('Content-Type', 'application/json');
+              res.send(JSON.stringify('success'));
+            }
+          });
+        }
+      });
+
+    });
+
+  });
+
   function adoptionInputHandler(input) {
     return {
       adoptionApplication: {
@@ -50,4 +84,4 @@ module.exports = function (app) {
       }
     };
   }
-}
+};
