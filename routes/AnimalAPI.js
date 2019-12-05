@@ -5,7 +5,8 @@ let animalsData;
 module.exports = function (app) {
   app.get('/api/animal/get/shelter/:id', function (req, res) {
     req.getConnection(function (err, connection) {
-      const query = connection.query('SELECT * FROM Animal JOIN WaitingPlacement ON WaitingPlacement.chipID=Animal.chipID WHERE shelterid=? ORDER BY WaitingPlacement.surrenderTimestamp DESC', [req.params.id], function (err, rows) {
+      const query = connection.query('SELECT Animal.*, AA.adoptionStatus FROM Animal LEFT JOIN WaitingPlacement ON WaitingPlacement.chipID=Animal.chipID LEFT JOIN AdoptionApplication AA on Animal.chipID = AA.chipID WHERE shelterid=? AND NOT EXISTS( SELECT * FROM AdoptionApplication AB WHERE AB.adoptionStatus=\'approved\' AND AB.chipID=AA.chipID ) ORDER BY CASE WHEN AA.adoptionStatus LIKE \'pending\' THEN 1 WHEN AA.adoptionStatus IS NULL THEN 2 END, WaitingPlacement.surrenderTimestamp DESC ;', [req.params.id], function (err, rows) {
+        console.log(query.sql);
         if (err) {
           console.log("Error Selecting : %s ", err);
           res.setHeader('Content-Type', 'application/json');
