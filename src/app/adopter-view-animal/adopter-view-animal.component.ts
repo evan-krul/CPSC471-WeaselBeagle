@@ -18,11 +18,14 @@ export class AdopterViewAnimalComponent implements OnInit {
   private animalTraits;
   private adopted;
   private adoptedInfo;
+  private account;
   private status;
   constructor(
     private route: ActivatedRoute,
     private httpClient: HttpClient
   ) {
+
+    this.account = JSON.parse(localStorage.getItem('currentUser'));
     this.adopted = true;
     this.animalID = this.route.snapshot.paramMap.get('animal_id');
     this.getAnimal();
@@ -34,7 +37,10 @@ export class AdopterViewAnimalComponent implements OnInit {
   }
 
   getApplication() {
-    this.httpClient.get<any>(this.SERVER_URL_GET_APPLICATION + this.animalID, {}).subscribe(
+    this.httpClient.get<any>(this.SERVER_URL_GET_APPLICATION + this.animalID, {
+      params: {
+         email : this.account.email
+    }}).subscribe(
       (res) => {
         console.log('res is here:' + res);
         console.log(res);

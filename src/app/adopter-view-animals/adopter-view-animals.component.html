@@ -1,29 +1,29 @@
 <h1>Find a {{type}}</h1>
 <h3>Animals waiting for homes!</h3>
 <div class="grid-x full">
-  <div class="cell small-4">
-  <form [formGroup]="filterForm" (ngSubmit)="onSubmit(filterForm.value)">
-    <label>Select Breed
-      <select formControlName="breed">
-        <option *ngFor="let breed of breeds; let i = index" [value]="breed.value">
-          {{breed.text}}
-        </option>
-      </select>
-    </label>
+    <div class="cell small-4">
+      <form [formGroup]="filterForm" (ngSubmit)="onSubmit(filterForm.value)">
+        <label>Select Breed
+          <select formControlName="breed">
+            <option *ngFor="let breed of breeds; let i = index" [value]="breed.value">
+              {{breed.text}}
+            </option>
+          </select>
+        </label>
 
-    <label>Select Age
-      <select formControlName="animalAge">
-        <option value="young">Young</option>
-        <option value="adult">Adult</option>
-        <option value="senior">Senior</option>
-      </select>
-    </label>
+        <label>Select Age
+          <select formControlName="animalAge">
+            <option value="young">Young</option>
+            <option value="adult">Adult</option>
+            <option value="senior">Senior</option>
+          </select>
+        </label>
 
-    <button type="submit" class="expanded button">Add Filters</button>
-    <button (click)="clearForm()" type="button" class="expanded button">Clear Filters</button>
-  </form>
-  </div>
-  <div class="cell  small-8">
+        <button type="submit" class="expanded button">Add Filters</button>
+        <button (click)="clearForm()" type="button" class="expanded button">Clear Filters</button>
+      </form>
+    </div>
+  <div class="cell small-8">
     <div class="grid-x grid-margin-x small-up-1 medium-up-2 large-up-3">
 
       <div routerLink="/adopter/view/{{animal.chipID}}" *ngFor="let animal of animals" class="cell">
@@ -37,6 +37,7 @@
           <div class="card-section">
             <p>{{animal.apiData.breeds[0].name}}</p>
           </div>
+
         </div>
       </div>
     </div>

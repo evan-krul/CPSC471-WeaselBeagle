@@ -49,7 +49,6 @@ const routes: Routes = [
   { path: 'adopter/make_appointment/vet/:animal_id', component: AdopterScheduleVetComponent, canActivate: [AdopterGuard]},
   { path: 'shelter/animals/edit/:animal_id', component: ShelterEditAnimalComponent, canActivate: [ShelterGuard]},
   { path: 'vet/manage_schedule', component: VetScheduleComponent, canActivate: [VetGuard] },
-  { path: 'adopter/view/:animal_id', component: AdopterViewAnimalComponent, canActivate: [AdopterGuard]},
   { path: 'application/:animal_id', component: AdoptionApplicationComponent, canActivate: [AdopterGuard]}
 
   // otherwise redirect to home
