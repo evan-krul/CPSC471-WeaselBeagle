@@ -39,5 +39,10 @@
           {{animalTrait.trait}}
       </span>
   </div>
-  <button routerLink="/application" type="submit" class="expanded button">Adopt Me!</button>
+  <button *ngIf="adopted" routerLink="/application/{{animalInfo.chipID}}" type="submit" class="expanded button">Adopt Me!</button>
+  <div *ngIf="!adopted" class="cell small-12 callout success">
+    <h5>You have already submitted an adoption application for this pet!</h5>
+    <p>Your current adoption status is {{adoptedInfo.adoptionStatus}}</p>
+  </div>
+
 </div>
