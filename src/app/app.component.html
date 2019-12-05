@@ -1,25 +1,77 @@
 <ng2-slim-loading-bar color="blue"></ng2-slim-loading-bar>
 <div class="top-bar">
   <div class="top-bar-left">
-    <ul class="dropdown menu" data-dropdown-menu>
-      <li class="menu-text">Weasel Beagle</li>
 
+    <ul *ngIf="accountType === 'not_logged_in'" class="dropdown menu" data-dropdown-menu>
+      <div id="top-bar-space"></div>
+      <img class="logo" src="./../assets/logo.png" alt="WeaselBeagle logo">
       <li>
-        <a class="nav-item nav-link" routerLink="/">
-          Home
-        </a>
-      </li>
-      <li>
-        <a routerLink="product/create" class="nav-link" routerLinkActive="active">
-          Create Product
-        </a>
-      </li>
-      <li>
-        <a routerLink="products" class="nav-link" routerLinkActive="active">
-          Products
+        <a class="nav-item nav-link">
+          Welcome to WeaselBeagle!
         </a>
       </li>
     </ul>
+
+    <ul *ngIf="accountType === 'adopter'" class="dropdown menu" data-dropdown-menu>
+      <div id="top-bar-space"></div>
+      <img class="logo" src="./../assets/logo.png" alt="WeaselBeagle logo">
+      <li>
+        <a class="nav-item nav-link" routerLink="/">
+          HomePage
+        </a>
+      </li>
+      <li>
+        <a class="nav-item nav-link" routerLink="/adopter/pending/view">
+          View Pending Applications
+        </a>
+      </li>
+      <li>
+        <a class="nav-item nav-link" routerLink="/adopter/adopted/view">
+          View Adopted Animals
+        </a>
+      </li>
+    </ul>
+
+    <ul *ngIf="accountType === 'trainer'" class="dropdown menu" data-dropdown-menu>
+      <div id="top-bar-space"></div>
+      <img class="logo" src="./../assets/logo.png" alt="WeaselBeagle logo">
+      <li>
+        <a class="nav-item nav-link" routerLink="/">
+          View Training Appointments
+        </a>
+      </li>
+      <li>
+        <a class="nav-item nav-link" routerLink="/trainer/manage_schedule">
+          Manage Training Schedule
+        </a>
+      </li>
+    </ul>
+
+    <ul *ngIf="accountType === 'vet'" class="dropdown menu" data-dropdown-menu>
+      <div id="top-bar-space"></div>
+      <img class="logo" src="./../assets/logo.png" alt="WeaselBeagle logo">
+      <li>
+        <a class="nav-item nav-link" routerLink="/vet/appointments/animals">
+          View Vet Appointments
+        </a>
+      </li>
+      <li>
+        <a class="nav-item nav-link" routerLink="/vet/manage_schedule">
+          Manage Vet Schedule
+        </a>
+      </li>
+    </ul>
+
+    <ul *ngIf="accountType === 'Shelter_Emp'" class="dropdown menu" data-dropdown-menu>
+      <div id="top-bar-space"></div>
+      <img class="logo" src="./../assets/logo.png" alt="WeaselBeagle logo">
+      <li>
+        <a class="nav-item nav-link" routerLink="/shelter/animals">
+          View Shelter Animals
+        </a>
+      </li>
+    </ul>
+
   </div>
   <div class="top-bar-right">
     <ul class="menu">
@@ -38,7 +90,7 @@
     </div>
   </div>
   <div class="large-auto cell" id="footer">
-<!--    FOOTER-->
+    <!--    FOOTER-->
   </div>
 </div>
 

@@ -1,6 +1,29 @@
 .top-bar {
   box-shadow: black 0 -4px 10px;
 }
+
+.top-bar, .top-bar ul {
+  background-color: #0c3d5d;
+}
+
 #content-box {
   margin-top: 60px;
+}
+
+.logo {
+  position: absolute;
+  top: -8px;
+  left: -5px;
+  width: 130px;
+  z-index: 9;
+}
+
+div#top-bar-space {
+  display: block;
+  width: 150px;
+}
+
+a {
+  color: #ffffffff;
+  font-weight: bold;
 }
