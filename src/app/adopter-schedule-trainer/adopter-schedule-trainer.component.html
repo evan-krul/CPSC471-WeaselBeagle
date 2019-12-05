@@ -1,0 +1,65 @@
+<h2>Manage {{animalInfo.name}}'s training schedule.</h2>
+<br>
+<div class="grid-x grid-margin-x">
+
+  <div class="cell small-4">
+    <h4>{{animalInfo.name}}'s upcoming and recent training appointments:</h4>
+    <table>
+      <thead>
+      <tr>
+        <th>Trainer</th>
+<!--        <th>Trainer Email</th>-->
+        <th>Training Date</th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of animalHistory">
+          <td>{{item.name}} ({{item.email}})
+          </td>
+<!--          <td>{{item.email}}</td>-->
+          <td>{{item.date.split('T')[0]}}</td>
+          <td *ngIf="isFutureDate(item.date)">
+            <a class="button alert" (click)="deleteAppointment(item.email, item.date)">X</a>
+          </td>
+          <td *ngIf="!isFutureDate(item.date)"></td>
+        </tr>
+        <tr *ngIf="animalHistory.length === 0">
+          <td>
+            <i>No appointments :(</i>
+          </td>
+<!--          <td>Select a trainer to make an appointment.</td>-->
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="cell small-8">
+    <div class="grid-x">
+      <div class="cell small-12">
+        <h4>Trainer schedules: </h4>
+      </div>
+      <div class="cell small-12">
+        <label>Trainer
+          <select (change)="updateCal($event.target.value)">
+            <option *ngFor="let trainer of trainers" [value]="trainer.value">
+              {{trainer.text}}
+            </option>
+          </select>
+        </label>
+      </div>
+      <div class="cell small-12">
+        <i>Select an available time slice by clicking on the event.</i>
+        <full-calendar
+            #calendar
+            defaultView="dayGridMonth"
+            [plugins]="calendarPlugins"
+            [editable]="true"
+            [events]="calendarEvents"
+            (eventClick)="handleEventClick($event)">
+
+        </full-calendar>
+      </div>
+    </div>
+  </div>
+</div>

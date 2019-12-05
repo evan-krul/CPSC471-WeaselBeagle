@@ -1,0 +1,13 @@
+<h2>Your availability</h2>
+<p><i>
+  Select a day to add an availability. Select an event to remove an availability.
+</i></p>
+<full-calendar
+    #calendar
+    defaultView="dayGridMonth"
+    [plugins]="calendarPlugins"
+    [editable]="true"
+    [events]="calendarEvents"
+    (dateClick)="handleDateClick($event)"
+    (eventClick)="handleEventClick($event)">
+</full-calendar>

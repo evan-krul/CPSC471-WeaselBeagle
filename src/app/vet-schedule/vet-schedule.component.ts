@@ -1,21 +1,21 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
+import {FullCalendarComponent} from '@fullcalendar/angular';
 import dayGridPlugin from '@fullcalendar/daygrid';
-import interactionPlugin from '@fullcalendar/interaction'; // for dateClick
+import interactionPlugin from '@fullcalendar/interaction';
 import {HttpClient} from '@angular/common/http';
-import { FullCalendarComponent } from '@fullcalendar/angular';
 
 @Component({
-  selector: 'app-trainer-schedule',
-  templateUrl: './trainer-schedule.component.html',
-  styleUrls: ['./trainer-schedule.component.css']
+  selector: 'app-vet-schedule',
+  templateUrl: './vet-schedule.component.html',
+  styleUrls: ['./vet-schedule.component.css']
 })
-export class TrainerScheduleComponent implements OnInit {
+export class VetScheduleComponent implements OnInit {
   @ViewChild('calendar', {static: false}) calendarComponent: FullCalendarComponent;
   calendarPlugins = [dayGridPlugin, interactionPlugin];
-  SERVER_URL_GET = 'http://localhost:4300/api/trainer/schedule';
-  SERVER_URL_POST = 'http://localhost:4300/api/trainer/schedule/add';
-  SERVER_URL_DELETE = 'http://localhost:4300/api/trainer/schedule/delete';
-  SERVER_URL_GET_BOOKINGS = 'http://localhost:4300/api/trainer/bookings';
+  SERVER_URL_GET = 'http://localhost:4300/api/vet/schedule';
+  SERVER_URL_POST = 'http://localhost:4300/api/vet/schedule/add';
+  SERVER_URL_DELETE = 'http://localhost:4300/api/vet/schedule/delete';
+  SERVER_URL_GET_BOOKINGS = 'http://localhost:4300/api/vet/bookings';
   private eventColor = 'green';
   private account;
   calendarEvents = [
@@ -93,7 +93,7 @@ export class TrainerScheduleComponent implements OnInit {
     }).subscribe(
       (res) => {
         const bookedEvents = res.map(event => ({
-          title: 'T: ' + event.petName,
+          title: 'V: ' + event.petName,
           date: event.date,
           color: this.eventColor
         }));
