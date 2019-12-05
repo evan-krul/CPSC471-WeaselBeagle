@@ -12,7 +12,7 @@ import {ShelterViewAnimalsComponent} from './shelter-view-animals/shelter-view-a
 import {ShelterViewAnimalComponent} from './shelter-view-animal/shelter-view-animal.component';
 import {VetAddHealthRecordComponent} from './vet-add-health-record/vet-add-health-record.component';
 import {VetViewAnimalsComponent} from './vet-view-animals/vet-view-animals.component';
-import { VetViewAnimalComponent } from './vet-view-animal/vet-view-animal.component';
+import {VetViewAnimalComponent} from './vet-view-animal/vet-view-animal.component';
 import {TrainerGuard} from './helpers/trainer.guard';
 import {ShelterGuard} from './helpers/shelter.guard';
 import {HomeComponent} from './home/home.component';
