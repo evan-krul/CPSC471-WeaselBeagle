@@ -11,7 +11,7 @@ export class AdopterViewAnimalComponent implements OnInit {
 
   SERVER_URL_GET = 'http://localhost:4300/api/animal/get/';
   SERVER_URL_GET_TRAITS = 'http://localhost:4300/api/animal/get_traits/';
-  SERVER_URL_GET_APPLICATION = 'http://localhost:4300/api/application/';
+  SERVER_URL_GET_APPLICATION = 'http://localhost:4300/api/application/this/';
 
   private animalID;
   private animalInfo;

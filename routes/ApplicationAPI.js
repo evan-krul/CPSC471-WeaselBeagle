@@ -5,6 +5,19 @@ module.exports = function (app) {
   app.get('/api/application/:chipID', function (req, res) {
     req.getConnection(function (err, connection) {
       console.log(req.params.chipID);
+      let query=connection.query('SELECT * FROM AdoptionApplication WHERE chipID = ?', [req.params.chipID], function (err, rows){
+        if (err) {
+          console.log("Error Selecting : %s ", err);
+        }
+        res.setHeader('Content-Type', 'application/json');
+        res.send(JSON.stringify(rows));
+      });
+    });
+  });
+
+  app.get('/api/application/this/:chipID', function (req, res) {
+    req.getConnection(function (err, connection) {
+      console.log(req.params.chipID);
       let query=connection.query('SELECT * FROM AdoptionApplication WHERE chipID = ? AND adopterEmail = ?', [req.params.chipID, req.query.email], function (err, rows){
         if (err) {
           console.log("Error Selecting : %s ", err);
