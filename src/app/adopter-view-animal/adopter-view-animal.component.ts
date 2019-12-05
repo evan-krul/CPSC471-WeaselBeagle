@@ -19,7 +19,6 @@ export class AdopterViewAnimalComponent implements OnInit {
   private adopted;
   private adoptedInfo;
   private account;
-  private status;
   constructor(
     private route: ActivatedRoute,
     private httpClient: HttpClient

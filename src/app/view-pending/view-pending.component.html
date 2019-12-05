@@ -1,0 +1,29 @@
+<h1>Pending Applications</h1>
+<div class="grid-x full">
+
+  <div *ngIf="pending" class="cell small-12 callout success">
+    <h5>You currently have no pending applications!</h5>
+    <p>Click the button below to return to the homepage.</p>
+  </div>
+  <button *ngIf="pending" routerLink="/" type="button" class="expanded button">Home</button>
+
+  <div class="cell small-12">
+    <div class="grid-x grid-margin-x small-up-1 medium-up-2 large-up-3">
+
+      <div routerLink="/adopter/view/{{animal.chipID}}" *ngFor="let animal of animals" class="cell">
+        <div class="card">
+          <div class="animal-thumbnail" class="card-divider">
+            <h3>
+              {{animal.name}}
+            </h3>
+          </div>
+          <img class="animal-thumbnail" src="{{animal.apiData.url}}">
+          <div class="card-section">
+            <p>{{animal.apiData.breeds[0].name}}</p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

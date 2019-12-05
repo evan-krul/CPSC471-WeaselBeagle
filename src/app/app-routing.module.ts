@@ -25,6 +25,7 @@ import {AdopterScheduleTrainerComponent} from './adopter-schedule-trainer/adopte
 import {VetGuard} from './helpers/vet.guard';
 import {VetScheduleComponent} from './vet-schedule/vet-schedule.component';
 import {AdopterScheduleVetComponent} from './adopter-schedule-vet/adopter-schedule-vet.component';
+import {ViewPendingComponent} from './view-pending/view-pending.component';
 
 /**
  * LOGIN CODE ADAPTED FROM: https://jasonwatmore.com/post/2019/06/10/angular-8-user-registration-and-login-example-tutorial
@@ -49,7 +50,8 @@ const routes: Routes = [
   { path: 'adopter/make_appointment/vet/:animal_id', component: AdopterScheduleVetComponent, canActivate: [AdopterGuard]},
   { path: 'shelter/animals/edit/:animal_id', component: ShelterEditAnimalComponent, canActivate: [ShelterGuard]},
   { path: 'vet/manage_schedule', component: VetScheduleComponent, canActivate: [VetGuard] },
-  { path: 'application/:animal_id', component: AdoptionApplicationComponent, canActivate: [AdopterGuard]}
+  { path: 'application/:animal_id', component: AdoptionApplicationComponent, canActivate: [AdopterGuard]},
+  { path: 'adopter/pending/view', component: ViewPendingComponent, canActivate: [AdopterGuard]}
 
   // otherwise redirect to home
 ];
