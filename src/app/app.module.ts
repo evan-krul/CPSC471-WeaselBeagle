@@ -19,6 +19,9 @@ import {TagInputModule} from 'ngx-chips';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { ShelterViewAnimalsComponent } from './shelter-view-animals/shelter-view-animals.component';
 import { ShelterViewAnimalComponent } from './shelter-view-animal/shelter-view-animal.component';
+import { VetAddHealthRecordComponent } from './vet-add-health-record/vet-add-health-record.component';
+import { VetViewAnimalsComponent } from './vet-view-animals/vet-view-animals.component';
+import { VetViewAnimalComponent } from './vet-view-animal/vet-view-animal.component';
 import { HomeComponent } from './home/home.component';
 import { AdopterViewAnimalsComponent } from './adopter-view-animals/adopter-view-animals.component';
 import { AdopterViewAnimalComponent } from './adopter-view-animal/adopter-view-animal.component';
@@ -41,6 +44,10 @@ import { AdopterScheduleVetComponent } from './adopter-schedule-vet/adopter-sche
     TrainerScheduleComponent,
     ShelterAddAnimalComponent,
     ShelterViewAnimalsComponent,
+    ShelterViewAnimalComponent,
+    VetAddHealthRecordComponent,
+    VetViewAnimalsComponent,
+    VetViewAnimalComponent,
     ShelterViewAnimalComponent,
     RegisterComponent,
     HomeComponent,

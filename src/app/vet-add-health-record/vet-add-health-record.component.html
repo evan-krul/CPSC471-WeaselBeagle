@@ -1,0 +1,20 @@
+<form [formGroup]="healthRecordForm" (ngSubmit)="onSubmit(healthRecordForm.value)">
+  <h4 class="text-center">Enter a new health record for {{animalInfo.name}}</h4>
+  <div class="form-group">
+    <label>Health Record Type
+      <select formControlName="type">
+        <option value="Check-up">Check-up</option>
+        <option value="Vaccination">Vaccination</option>
+        <option value="Surgery">Surgery</option>
+        <option value="Medical Test">Medical Test</option>
+        <option value="Medication">Medication</option>
+      </select>
+    </label>
+  </div>
+  <label>Comments (MAX 2024 CHARACTERS)
+    <textarea class="" type="text"
+              placeholder="Add any relevant medical data, comments or observations here!" formControlName="comments"
+              rows="20"></textarea>
+  </label>
+  <button class="button" type="submit">Submit Record</button>
+</form>

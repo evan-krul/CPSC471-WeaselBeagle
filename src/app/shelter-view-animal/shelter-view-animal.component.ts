@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
 
@@ -14,6 +14,7 @@ export class ShelterViewAnimalComponent implements OnInit {
   private animalID;
   private animalInfo;
   private animalTraits;
+
   constructor(
     private route: ActivatedRoute,
     private httpClient: HttpClient
@@ -29,8 +30,8 @@ export class ShelterViewAnimalComponent implements OnInit {
   getAnimal() {
     this.httpClient.get<any>(this.SERVER_URL_GET + this.animalID, {}).subscribe(
       (res) => {
-          this.animalInfo = res;
-          console.log(this.animalInfo);
+        this.animalInfo = res;
+        console.log(this.animalInfo);
       },
       (err) => {
         console.log(err);

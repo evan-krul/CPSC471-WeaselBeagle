@@ -63,7 +63,7 @@ export class LoginComponent implements OnInit {
       .subscribe(
         data => {
           // this.router.navigate([this.returnUrl]);
-          this.notifier.notify('success', 'Welcome to Weasel Beagle');
+          this.notifier.notify('success', 'Welcome to WeaselBeagle');
           window.location.replace(this.returnUrl);
         },
         error => {

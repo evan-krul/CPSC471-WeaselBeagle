@@ -48,7 +48,7 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit(newUserData) {
-    if(this.isShelterReg) {
+    if (this.isShelterReg) {
       newUserData.shelterID = this.shelterId;
       newUserData.accountType = 'Shelter_Emp';
     }
