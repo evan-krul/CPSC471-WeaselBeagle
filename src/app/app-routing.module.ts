@@ -2,7 +2,6 @@ import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import {ProductAddComponent} from './product-add/product-add.component';
 import {ProductEditComponent} from './product-edit/product-edit.component';
-import {ProductGetComponent} from './product-get/product-get.component';
 import {LoginComponent} from './login/login.component';
 import {AuthGuard} from './helpers/auth.guard';
 import {RegisterComponent} from './register/register.component';
