@@ -32,6 +32,8 @@ import { VetScheduleComponent } from './vet-schedule/vet-schedule.component';
 import { AdopterScheduleVetComponent } from './adopter-schedule-vet/adopter-schedule-vet.component';
 import { ShelterViewAdoptionRequestsComponent } from './shelter-view-adoption-requests/shelter-view-adoption-requests.component';
 import { ViewPendingComponent } from './view-pending/view-pending.component';
+import { TrainerViewAnimalsComponent } from './trainer-view-animals/trainer-view-animals.component';
+import { TrainerViewAnimalComponent } from './trainer-view-animal/trainer-view-animal.component';
 
 
 @NgModule({
@@ -63,7 +65,9 @@ import { ViewPendingComponent } from './view-pending/view-pending.component';
     VetScheduleComponent,
     AdopterScheduleVetComponent,
     ShelterViewAdoptionRequestsComponent,
-    ViewPendingComponent
+    ViewPendingComponent,
+    TrainerViewAnimalsComponent,
+    TrainerViewAnimalComponent
   ],
   imports: [
     BrowserModule,

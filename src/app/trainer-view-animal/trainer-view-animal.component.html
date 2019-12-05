@@ -1,0 +1,62 @@
+<div class="grid-x">
+  <div class="cell small-5">
+    <button class="button" (click)="backClick();">
+      <i class="fa fa-plus"></i>
+      <span>Back to all animals</span>
+    </button>
+    <img class="pet_image" src="{{animalInfo.apiData.url}}" alt="">
+  </div>
+  <div class="cell small-7">
+    <h2>{{animalInfo.name}}</h2>
+    <table>
+      <tbody>
+      <tr>
+        <td>
+          <b>Breed: </b>
+        </td>
+        <td>
+          {{animalInfo.apiData.breeds[0].name}}
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Chip ID: </b>
+        </td>
+        <td>
+          {{animalInfo.chipID}}
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Birthdate: </b>
+        </td>
+        <td>
+          {{animalInfo.birthDate.split('T')[0]}}
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Adopter: </b>
+        </td>
+        <td>
+          {{adopterInfo.fname}} {{adopterInfo.lname}}
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Contact Email: </b>
+        </td>
+        <td>
+          {{adopterInfo.email}}
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="cell  small-12">
+    <h3>Traits</h3>
+    <span *ngFor="let animalTrait of animalTraits" class="badge_traits">
+          {{animalTrait.trait}}
+      </span>
+  </div>
+</div>
