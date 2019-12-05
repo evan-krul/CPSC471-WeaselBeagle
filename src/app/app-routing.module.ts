@@ -37,8 +37,7 @@ const routes: Routes = [
   { path: 'adopter/:type', component: AdopterViewAnimalsComponent, canActivate: [AdopterGuard]},
   { path: 'adopter/view/:animal_id', component: AdopterViewAnimalComponent, canActivate: [AdopterGuard]},
   { path: 'shelter/animals/edit/:animal_id', component: ShelterEditAnimalComponent, canActivate: [ShelterGuard]},
-  { path: 'adopter/view/:animal_id', component: AdopterViewAnimalComponent, canActivate: [AdopterGuard]},
-  { path: 'application', component: AdoptionApplicationComponent, canActivate: [AdopterGuard]}
+  { path: 'application/:animal_id', component: AdoptionApplicationComponent, canActivate: [AdopterGuard]}
 
   // otherwise redirect to home
 ];
