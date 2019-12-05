@@ -18,6 +18,10 @@ import {AdopterGuard} from './helpers/adopter.guard';
 import {AdopterViewAnimalComponent} from './adopter-view-animal/adopter-view-animal.component';
 import {ShelterEditAnimalComponent} from './shelter-edit-animal/shelter-edit-animal.component';
 import {AdoptionApplicationComponent} from './adoption-application/adoption-application.component';
+import {AdopterScheduleTrainerComponent} from './adopter-schedule-trainer/adopter-schedule-trainer.component';
+import {VetGuard} from './helpers/vet.guard';
+import {VetScheduleComponent} from './vet-schedule/vet-schedule.component';
+import {AdopterScheduleVetComponent} from './adopter-schedule-vet/adopter-schedule-vet.component';
 
 
 /**
@@ -36,7 +40,10 @@ const routes: Routes = [
   { path: 'add_prod', component: ProductAddComponent, canActivate: [AuthGuard] },
   { path: 'adopter/:type', component: AdopterViewAnimalsComponent, canActivate: [AdopterGuard]},
   { path: 'adopter/view/:animal_id', component: AdopterViewAnimalComponent, canActivate: [AdopterGuard]},
+  { path: 'adopter/make_appointment/trainer/:animal_id', component: AdopterScheduleTrainerComponent, canActivate: [AdopterGuard]},
+  { path: 'adopter/make_appointment/vet/:animal_id', component: AdopterScheduleVetComponent, canActivate: [AdopterGuard]},
   { path: 'shelter/animals/edit/:animal_id', component: ShelterEditAnimalComponent, canActivate: [ShelterGuard]},
+  { path: 'vet/manage_schedule', component: VetScheduleComponent, canActivate: [VetGuard] },
   { path: 'adopter/view/:animal_id', component: AdopterViewAnimalComponent, canActivate: [AdopterGuard]},
   { path: 'application', component: AdoptionApplicationComponent, canActivate: [AdopterGuard]}
 

@@ -24,6 +24,9 @@ import { AdopterViewAnimalsComponent } from './adopter-view-animals/adopter-view
 import { AdopterViewAnimalComponent } from './adopter-view-animal/adopter-view-animal.component';
 import { AdoptionApplicationComponent } from './adoption-application/adoption-application.component';
 import { ShelterEditAnimalComponent } from './shelter-edit-animal/shelter-edit-animal.component';
+import { AdopterScheduleTrainerComponent } from './adopter-schedule-trainer/adopter-schedule-trainer.component';
+import { VetScheduleComponent } from './vet-schedule/vet-schedule.component';
+import { AdopterScheduleVetComponent } from './adopter-schedule-vet/adopter-schedule-vet.component';
 
 
 @NgModule({
@@ -46,7 +49,10 @@ import { ShelterEditAnimalComponent } from './shelter-edit-animal/shelter-edit-a
     AdoptionApplicationComponent,
     AdopterViewAnimalComponent,
     ShelterViewAnimalComponent,
-    ShelterEditAnimalComponent
+    ShelterEditAnimalComponent,
+    AdopterScheduleTrainerComponent,
+    VetScheduleComponent,
+    AdopterScheduleVetComponent
   ],
   imports: [
     BrowserModule,
