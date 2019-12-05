@@ -11,23 +11,43 @@ export class AdopterViewAnimalComponent implements OnInit {
 
   SERVER_URL_GET = 'http://localhost:4300/api/animal/get/';
   SERVER_URL_GET_TRAITS = 'http://localhost:4300/api/animal/get_traits/';
+  SERVER_URL_GET_APPLICATION = 'http://localhost:4300/api/application/';
 
   private animalID;
   private animalInfo;
   private animalTraits;
+  private adopted;
+  private adoptedInfo;
+  private status;
   constructor(
     private route: ActivatedRoute,
     private httpClient: HttpClient
   ) {
+    this.adopted = true;
     this.animalID = this.route.snapshot.paramMap.get('animal_id');
     this.getAnimal();
+    this.getApplication();
   }
 
 
   ngOnInit() {
   }
 
-  getAnimal() {
+  getApplication() {
+    this.httpClient.get<any>(this.SERVER_URL_GET_APPLICATION + this.animalID, {}).subscribe(
+      (res) => {
+        console.log('res is here:' + res);
+        console.log(res);
+        this.adopted = res.length === 0;
+        this.adoptedInfo = res[0];
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  }
+
+    getAnimal() {
     this.httpClient.get<any>(this.SERVER_URL_GET + this.animalID, {}).subscribe(
       (res) => {
         this.animalInfo = res;

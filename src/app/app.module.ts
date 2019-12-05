@@ -30,6 +30,7 @@ import { ShelterEditAnimalComponent } from './shelter-edit-animal/shelter-edit-a
 import { AdopterScheduleTrainerComponent } from './adopter-schedule-trainer/adopter-schedule-trainer.component';
 import { VetScheduleComponent } from './vet-schedule/vet-schedule.component';
 import { AdopterScheduleVetComponent } from './adopter-schedule-vet/adopter-schedule-vet.component';
+import { ShelterViewAdoptionRequestsComponent } from './shelter-view-adoption-requests/shelter-view-adoption-requests.component';
 
 
 @NgModule({
@@ -59,7 +60,8 @@ import { AdopterScheduleVetComponent } from './adopter-schedule-vet/adopter-sche
     ShelterEditAnimalComponent,
     AdopterScheduleTrainerComponent,
     VetScheduleComponent,
-    AdopterScheduleVetComponent
+    AdopterScheduleVetComponent,
+    ShelterViewAdoptionRequestsComponent
   ],
   imports: [
     BrowserModule,

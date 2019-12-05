@@ -1,4 +1,8 @@
-<h2>Adopt an animal!</h2>
-<h4>Hi, My name is {{adopterForm.firstname}} {{adopterForm.lastname}} and I would like to adopt penny.</h4>
-<button class="button" type="submit">Submit Application</button>
-
+<h2>Adopt {{animalInfo.name}}!</h2>
+<h3>Weasel Beagle Application Form</h3>
+    <h4>Hi,</h4>
+<h4>My name is {{account.fname}} {{account.lname}} and I would like to adopt {{animalInfo.name}}({{animalID}}), the  {{animalInfo.apiData.breeds[0].name}}.</h4>
+<h4>I understand that completing this application does not guarantee I will be allowed to adopt a {{animalInfo.animalType}}, and that the application
+  is a tool to help Weasel Beagle determine if this {{animalInfo.animalType}} and my family are a good fit for each other. If I am approved to adopt a {{animalInfo.animalType}},
+  I agree to pay a non-refundable adoption fee and hand sign an adoption contract at the time of adoption.</h4>
+<button (click)="onSubmit()" class="button" type="submit">Submit Application</button>
