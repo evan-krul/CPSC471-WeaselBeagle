@@ -53,13 +53,13 @@ export class AdoptionApplicationComponent implements OnInit {
     console.log(this.animalID);
     console.log(this.applicationData);
 
-    this.httpClient.post<any>(this.SERVER_URL_GET, this.applicationData).subscribe(
+    this.httpClient.post<any>(this.SERVER_URL_GET, this.applicationData.value).subscribe(
       (res) => {
         this.notifier.notify('success', 'Thank you for submitting an application!');
-        this.router.navigateByUrl('/adopter/' + this.animalInfo.animalType);
+        this.router.navigateByUrl('/adopter/dog');
       },
       (err) => {
-        this.notifier.notify('error', 'Error: ' + err.error.message);
+        // this.notifier.notify('error', 'Error: ' + err.error.message);
         console.log(err);
       }
     );

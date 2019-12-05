@@ -2,9 +2,10 @@ const {phoneNumbersInputHandler} = require("../public/helpers/AccountHelpers");
 const {accountInputHandler} = require("../public/helpers/AccountHelpers");
 module.exports = function (app) {
 
-  app.get('/api/application', function (req, res) {
+  app.get('/api/application/:chipID', function (req, res) {
     req.getConnection(function (err, connection) {
-      connection.query('SELECT * FROM AdoptionApplication ON chipID = ?', [req.chipID], function (err, rows) {
+      console.log(req.params.chipID);
+      let query=connection.query('SELECT * FROM AdoptionApplication WHERE chipID = ?', [req.params.chipID], function (err, rows){
         if (err) {
           console.log("Error Selecting : %s ", err);
         }
@@ -19,14 +20,21 @@ module.exports = function (app) {
     req.getConnection(function (err, connection) {
       let data = adoptionInputHandler(input);
       console.log('save request...', data);
-      connection.query("INSERT INTO AdoptionApplication set ?", [data.account], function (err) {
+      let query=connection.query("INSERT INTO AdoptionApplication set ?", [data.adoptionApplication], function (err) {
         console.log(query.sql);
         if (err) {
           console.log("Error inserting : %s ", err);
+          res.setHeader('Content-Type', 'application/json');
+          let result = {
+            message: "Unknown error."
+          };
+          res.status(401).send(JSON.stringify(result));
+        } else {
+          res.setHeader('Content-Type', 'application/json');
+          res.send(JSON.stringify('success'));
         }
       });
-      res.setHeader('Content-Type', 'application/json');
-      res.send(JSON.stringify('success'));
+
     });
 
   });
@@ -34,7 +42,7 @@ module.exports = function (app) {
   function adoptionInputHandler(input) {
     return {
       adoptionApplication: {
-        email: input.email,
+        adopterEmail: input.email,
         chipID: input.chipID,
         submissionTimestamp: new Date(),
         adoptionTimestamp: null,
