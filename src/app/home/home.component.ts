@@ -29,6 +29,9 @@ export class HomeComponent implements OnInit {
     if (this.account.accountType === 'vet') {
       this.router.navigate(['vet/appointments/animals']);
     }
+    if (this.account.accountType === 'Shelter_Emp') {
+      this.router.navigate(['shelter/animals']);
+    }
   }
 
 }

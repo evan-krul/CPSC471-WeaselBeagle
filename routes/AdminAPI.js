@@ -69,7 +69,7 @@ module.exports = function (app) {
     req.getConnection(function (err, connection) {
       let data = trainerInputHandler(input);
       console.log('save request...', data);
-      i
+      i;
       connection.query("INSERT INTO Account set ? ", [data.account], function (err) {
         if (err) {
           console.log("Error inserting : %s ", err);

@@ -24,7 +24,7 @@ module.exports = function (app) {
         }
       });
     });
-  })
+  });
 
   app.get('/api/vet/appointments/get-health-record/:animal_id', function (req, res) {
     let input = JSON.parse(JSON.stringify(req.body));
