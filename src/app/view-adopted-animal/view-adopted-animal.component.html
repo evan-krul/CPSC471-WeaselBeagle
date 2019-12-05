@@ -40,9 +40,23 @@
           {{animalTrait.trait}}
       </span>
   </div>
-  <button *ngIf="adopted" routerLink="/application/{{animalInfo.chipID}}" type="submit" class="expanded button">Adopt Me!</button>
-  <div *ngIf="notadopted" class="cell small-12 callout success">
-    <h5>You have already submitted an adoption application for this pet!</h5>
-    <p>Your current adoption status is {{adoptedInfo.adoptionStatus}}</p>
+  <div class="cell  small-12">
+    <h3>Health Records</h3>
+    <table>
+      <thead>
+      <tr>
+        <th width="200">Record Type</th>
+        <th width="200">Date Recorded</th>
+        <th>Comments</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let healthRecord of healthRecords" class="badge_traits">
+        <td width="200">{{healthRecord.type}}</td>
+        <td width="200">{{healthRecord.recordTimestamp.split('T')[0]}}</td>
+        <td>{{healthRecord.comments}}</td>
+    </table>
   </div>
+  <button routerLink="/adopter/make_appointment/vet/{{animalInfo.chipID}}" type="submit" class="expanded button">View Vet Schedule</button>
+  <button routerLink="/adopter/make_appointment/trainer/{{animalInfo.chipID}}" type="submit" class="expanded button">View Trainer Schedule</button>
 </div>

@@ -129,11 +129,11 @@ module.exports = function (app) {
     }
   });
 
-  app.get('/api/animal/pending', function (req, res) {
+  app.get('/api/animal/status', function (req, res) {
     req.getConnection(function (err, connection) {
       var today = new Date();
       console.log(today);
-      const query = connection.query('SELECT * FROM Animal JOIN AdoptionApplication ON Animal.chipID=AdoptionApplication.chipID WHERE AdoptionApplication.adoptionStatus = "pending" AND AdoptionApplication.adopterEmail = ?', [req.query.email], function (err, rows) {
+      const query = connection.query('SELECT * FROM Animal JOIN AdoptionApplication ON Animal.chipID=AdoptionApplication.chipID WHERE AdoptionApplication.adoptionStatus=? AND AdoptionApplication.adopterEmail=?', [req.query.status, req.query.email], function (err, rows) {
         console.log(req.query);
         console.log(query.sql);
         if (err) {

@@ -26,6 +26,8 @@ import {VetGuard} from './helpers/vet.guard';
 import {VetScheduleComponent} from './vet-schedule/vet-schedule.component';
 import {AdopterScheduleVetComponent} from './adopter-schedule-vet/adopter-schedule-vet.component';
 import {ViewPendingComponent} from './view-pending/view-pending.component';
+import {ViewAdoptedComponent} from './view-adopted/view-adopted.component';
+import {ViewAdoptedAnimalComponent} from './view-adopted-animal/view-adopted-animal.component';
 import {TrainerViewAnimalsComponent} from './trainer-view-animals/trainer-view-animals.component';
 import {TrainerViewAnimalComponent} from './trainer-view-animal/trainer-view-animal.component';
 
@@ -33,6 +35,31 @@ import {TrainerViewAnimalComponent} from './trainer-view-animal/trainer-view-ani
  * LOGIN CODE ADAPTED FROM: https://jasonwatmore.com/post/2019/06/10/angular-8-user-registration-and-login-example-tutorial
  */
 const routes: Routes = [
+  {path: 'vet/appointments/add-health-record/:animal_id', component: VetAddHealthRecordComponent, canActivate: [VetGuard]},
+  {path: 'vet/appointments/animals', component: VetViewAnimalsComponent, canActivate: [VetGuard]},
+  {path: 'vet/animals/view/:animal_id', component: VetViewAnimalComponent, canActivate: [VetGuard]},
+  { path: '', component: HomeComponent, canActivate: [AuthGuard] },
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'register/shelter', component: AddShelterComponent },
+  { path: 'register/shelter_employee/:shelter_id', component: RegisterComponent },
+  { path: 'trainer/manage_schedule', component: TrainerScheduleComponent, canActivate: [TrainerGuard] },
+  { path: 'shelter/animals/add', component: ShelterAddAnimalComponent, canActivate: [ShelterGuard]},
+  { path: 'shelter/animals', component: ShelterViewAnimalsComponent, canActivate: [ShelterGuard]},
+  { path: 'shelter/animals/view/:animal_id', component: ShelterViewAnimalComponent, canActivate: [ShelterGuard]},
+  { path: 'add_prod', component: ProductAddComponent, canActivate: [AuthGuard] },
+  { path: 'adopter/:type', component: AdopterViewAnimalsComponent, canActivate: [AdopterGuard]},
+  { path: 'adopter/view/:animal_id', component: AdopterViewAnimalComponent, canActivate: [AdopterGuard]},
+  { path: 'adopter/make_appointment/trainer/:animal_id', component: AdopterScheduleTrainerComponent, canActivate: [AdopterGuard]},
+  { path: 'adopter/make_appointment/vet/:animal_id', component: AdopterScheduleVetComponent, canActivate: [AdopterGuard]},
+  { path: 'shelter/animals/edit/:animal_id', component: ShelterEditAnimalComponent, canActivate: [ShelterGuard]},
+  { path: 'vet/manage_schedule', component: VetScheduleComponent, canActivate: [VetGuard] },
+  { path: 'application/:animal_id', component: AdoptionApplicationComponent, canActivate: [AdopterGuard]},
+  { path: 'adopter/pending/view', component: ViewPendingComponent, canActivate: [AdopterGuard]},
+  { path: 'adopter/adopted/view', component: ViewAdoptedComponent, canActivate: [AdopterGuard]},
+  { path: 'adopter/adopted/view/:animal_id', component: ViewAdoptedAnimalComponent, canActivate: [AdopterGuard]},
+
+  // otherwise redirect to home
   {path: '', component: HomeComponent, canActivate: [AuthGuard]},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
