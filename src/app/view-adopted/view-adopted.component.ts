@@ -5,14 +5,15 @@ import {FormBuilder} from '@angular/forms';
 import {NotifierService} from 'angular-notifier';
 
 @Component({
-  selector: 'app-view-pending',
-  templateUrl: './view-pending.component.html',
-  styleUrls: ['./view-pending.component.css']
+  selector: 'app-view-adopted',
+  templateUrl: './view-adopted.component.html',
+  styleUrls: ['./view-adopted.component.css']
 })
-export class ViewPendingComponent implements OnInit {
+export class ViewAdoptedComponent implements OnInit {
+
   SERVER_URL = 'http://localhost:4300/api/animal/status';
 
-  private pending;
+  private approved;
   private animals;
   private account;
   private accountData;
@@ -23,7 +24,7 @@ export class ViewPendingComponent implements OnInit {
     this.account = JSON.parse(localStorage.getItem('currentUser'));
     this.accountData = JSON.parse(localStorage.getItem('currentUserData'));
     this.notifier = notifierService;
-    this.pending = false;
+    this.approved = false;
   }
 
   ngOnInit() {
@@ -33,11 +34,11 @@ export class ViewPendingComponent implements OnInit {
     this.httpClient.get<any>(this.SERVER_URL, {
       params: {
         email: this.account.email,
-        status: 'pending'
+        status: 'approved'
       }
     }).subscribe(
       (res) => {
-        this.pending = res.length === 0;
+        this.approved = res.length === 0;
         this.animals = [];
         this.animals = this.animals.concat(
           res

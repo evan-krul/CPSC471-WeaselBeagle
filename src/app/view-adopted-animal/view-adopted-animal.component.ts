@@ -3,12 +3,12 @@ import {ActivatedRoute} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
 
 @Component({
-  selector: 'app-adopter-view-animal',
-  templateUrl: './adopter-view-animal.component.html',
-  styleUrls: ['./adopter-view-animal.component.css']
+  selector: 'app-view-adopted-animal',
+  templateUrl: './view-adopted-animal.component.html',
+  styleUrls: ['./view-adopted-animal.component.css']
 })
-export class AdopterViewAnimalComponent implements OnInit {
-
+export class ViewAdoptedAnimalComponent implements OnInit {
+  SERVER_URL_GET_HEALTH_RECORDS = 'http://localhost:4300/api/vet/appointments/get-health-record/';
   SERVER_URL_GET = 'http://localhost:4300/api/animal/get/';
   SERVER_URL_GET_TRAITS = 'http://localhost:4300/api/animal/get_traits/';
   SERVER_URL_GET_APPLICATION = 'http://localhost:4300/api/application/this/';
@@ -17,9 +17,9 @@ export class AdopterViewAnimalComponent implements OnInit {
   private animalInfo;
   private animalTraits;
   private adopted;
-  private notadopted;
   private adoptedInfo;
   private account;
+  private healthRecords;
   constructor(
     private route: ActivatedRoute,
     private httpClient: HttpClient
@@ -27,10 +27,10 @@ export class AdopterViewAnimalComponent implements OnInit {
 
     this.account = JSON.parse(localStorage.getItem('currentUser'));
     this.adopted = false;
-    this.notadopted = false;
     this.animalID = this.route.snapshot.paramMap.get('animal_id');
     this.getAnimal();
     this.getApplication();
+    this.getHealthRecords();
   }
 
 
@@ -40,13 +40,12 @@ export class AdopterViewAnimalComponent implements OnInit {
   getApplication() {
     this.httpClient.get<any>(this.SERVER_URL_GET_APPLICATION + this.animalID, {
       params: {
-         email : this.account.email
-    }}).subscribe(
+        email : this.account.email
+      }}).subscribe(
       (res) => {
         console.log('res is here:' + res);
         console.log(res);
         this.adopted = res.length === 0;
-        this.notadopted = res.length !== 0;
         this.adoptedInfo = res[0];
       },
       (err) => {
@@ -55,7 +54,7 @@ export class AdopterViewAnimalComponent implements OnInit {
     );
   }
 
-    getAnimal() {
+  getAnimal() {
     this.httpClient.get<any>(this.SERVER_URL_GET + this.animalID, {}).subscribe(
       (res) => {
         this.animalInfo = res;
@@ -71,6 +70,18 @@ export class AdopterViewAnimalComponent implements OnInit {
       (res) => {
         this.animalTraits = res;
         console.log(this.animalTraits);
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  }
+
+  getHealthRecords() {
+    this.httpClient.get<any>(this.SERVER_URL_GET_HEALTH_RECORDS + this.animalID, {}).subscribe(
+      (res) => {
+        this.healthRecords = res;
+        console.log(this.animalInfo);
       },
       (err) => {
         console.log(err);
