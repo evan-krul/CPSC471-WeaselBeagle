@@ -153,7 +153,6 @@ module.exports = function (app) {
         accountType: "vet"
       },
       userAccountPhoneNumbers: {
-        phoneNumbersInputHandler
       },
       vet: {
         email: input.email

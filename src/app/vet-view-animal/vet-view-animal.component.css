@@ -1,0 +1,11 @@
+img.pet_image {
+  clip-path: polygon(88% 0, 100% 50%, 88% 100%, 0% 100%, 10% 54%, 0% 0%);
+
+}
+span.badge_traits {
+  display: block;
+  padding: 10px;
+  background: #e6e6e6;
+  margin-right: 5px;
+  margin-bottom: 5px;
+}
