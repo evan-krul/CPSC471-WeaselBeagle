@@ -278,7 +278,7 @@ module.exports = function (app) {
     let input = JSON.parse(JSON.stringify(req.body));
     let newAppointment = {
       vetEmail: input.email,
-      date: input.date
+      date: input.date.split('T')[0]
     };
     req.getConnection(function (err, connection) {
       connection.query("INSERT INTO VetAppointment set ? ", [newAppointment], function (err, sqlRes) {
